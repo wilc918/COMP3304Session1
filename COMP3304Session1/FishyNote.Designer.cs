@@ -59,7 +59,7 @@ namespace COMP3304Session1
             // CollapseButton
             // 
             this.CollapseButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.CollapseButton.Location = new System.Drawing.Point(12, 19);
+            this.CollapseButton.Location = new System.Drawing.Point(12, 12);
             this.CollapseButton.Name = "CollapseButton";
             this.CollapseButton.Size = new System.Drawing.Size(75, 50);
             this.CollapseButton.TabIndex = 2;
@@ -78,6 +78,9 @@ namespace COMP3304Session1
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FishyNote";
             this.Text = "FishyNote";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FishyNote_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FishyNote_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FishyNote_MouseUp);
             this.ResumeLayout(false);
 
         }
