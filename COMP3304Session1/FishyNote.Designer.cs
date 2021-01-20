@@ -41,6 +41,7 @@ namespace COMP3304Session1
             this.FishyTextBox.Size = new System.Drawing.Size(329, 198);
             this.FishyTextBox.TabIndex = 0;
             this.FishyTextBox.Text = "Enter your note text here...";
+            this.FishyTextBox.Click += new System.EventHandler(this.FishyTextBox_Click);
             this.FishyTextBox.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // FishyDeleteButton
@@ -63,6 +64,7 @@ namespace COMP3304Session1
             this.CollapseButton.Size = new System.Drawing.Size(75, 50);
             this.CollapseButton.TabIndex = 2;
             this.CollapseButton.UseVisualStyleBackColor = false;
+            this.CollapseButton.Click += new System.EventHandler(this.CollapseButton_Click);
             // 
             // FishyNote
             // 
