@@ -41,7 +41,7 @@ namespace COMP3304Session1
         private void MoreFishButton_Click(object sender, EventArgs e)
         {
             // Instantiate and then show a new FishyNote Object within the _newNote attribute, if none exists.
-            if (_newNote == null) {
+            if (_newNote == null || _newNote.IsDisposed) {
                 _newNote = new FishyNote();
                 _newNote.Show();
             }
