@@ -14,7 +14,7 @@ namespace COMP3304Session1
     /// Class - Describes the methods and attributes of the FishyNotes Form
     /// 
     /// Author  (Calum Wilkinson)
-    /// Version (20/01/2020)
+    /// Version (27/01/2020)
     /// </summary>
     public partial class FishyNotes : Form
     {
@@ -23,6 +23,7 @@ namespace COMP3304Session1
         /// <summary>
         /// CONSTRUCTOR - FishyNotes Object Constructor
         /// </summary>
+        /// <param name="noteList"></param>
         public FishyNotes(IList<Form> noteList)
         {
             //Stores the notelist in a local variable.
@@ -44,13 +45,6 @@ namespace COMP3304Session1
             Form newNote = new FishyNote();
             _notesList.Add(newNote);
             newNote.Show();
-
-            //_newNote = new FishyNote();
-           /* for (int i = 0; i < _notesList.Count; i++)
-            {
-                _notesList[i].Show();
-
-            }*/
 
         }
     }

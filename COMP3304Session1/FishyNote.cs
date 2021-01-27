@@ -10,6 +10,12 @@ using System.Windows.Forms;
 
 namespace COMP3304Session1
 {
+    /// <summary>
+    ///Class - Describes the methods and attributes of the FishyNote Form that allow for Movement, Collapsing, Deletion and Text modification.
+    /// 
+    /// Author  (Calum Wilkinson)
+    /// Version (27/01/2020)
+    /// </summary>
     public partial class FishyNote : Form
     {
         /// <summary>

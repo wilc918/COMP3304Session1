@@ -16,7 +16,6 @@ namespace COMP3304Session1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new FishyNotes());
 
             //Instantiate new controller object of type Controller inside the variable controller.
             Controller controller = new Controller();
