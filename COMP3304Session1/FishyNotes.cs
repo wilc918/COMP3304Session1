@@ -19,13 +19,15 @@ namespace COMP3304Session1
     public partial class FishyNotes : Form
     {
 
-        private Form _newNote;
+        private IList<Form> _notesList;
 
         /// <summary>
         /// CONSTRUCTOR - FishyNotes Object Constructor
         /// </summary>
-        public FishyNotes()
+        public FishyNotes(IList<Form> noteList)
         {
+            //Stores the notelist in a local variable.
+            _notesList = noteList;
             InitializeComponent();
         }
 
@@ -40,10 +42,13 @@ namespace COMP3304Session1
         /// <param name="e"></param>
         private void MoreFishButton_Click(object sender, EventArgs e)
         {
-            // Instantiate and then show a new FishyNote Object within the _newNote attribute, if none exists.
-            if (_newNote == null || _newNote.IsDisposed) {
-                _newNote = new FishyNote();
-                _newNote.Show();
+            _notesList.Add(new FishyNote());
+
+            //_newNote = new FishyNote();
+            for (int i = 0; i < _notesList.Count; i++)
+            {
+                _notesList[i].Show();
+
             }
 
         }
