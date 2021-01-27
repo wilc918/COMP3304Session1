@@ -18,7 +18,6 @@ namespace COMP3304Session1
     /// </summary>
     public partial class FishyNotes : Form
     {
-
         private IList<Form> _notesList;
 
         /// <summary>
@@ -42,14 +41,16 @@ namespace COMP3304Session1
         /// <param name="e"></param>
         private void MoreFishButton_Click(object sender, EventArgs e)
         {
-            _notesList.Add(new FishyNote());
+            Form newNote = new FishyNote();
+            _notesList.Add(newNote);
+            newNote.Show();
 
             //_newNote = new FishyNote();
-            for (int i = 0; i < _notesList.Count; i++)
+           /* for (int i = 0; i < _notesList.Count; i++)
             {
                 _notesList[i].Show();
 
-            }
+            }*/
 
         }
     }
