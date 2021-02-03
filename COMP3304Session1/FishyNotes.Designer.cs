@@ -51,7 +51,6 @@ namespace COMP3304Session1
             this.Controls.Add(this.MoreFishButton);
             this.Name = "FishyNotes";
             this.Text = "FishyNotes";
-            this.Load += new System.EventHandler(this.FishyNotes_Load);
             this.ResumeLayout(false);
 
         }

@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace COMP3304Session1
 {
+
+
     /// <summary>
     /// Class - Describes the methods and attributes of the FishyNotes Form
     /// 
@@ -18,7 +20,15 @@ namespace COMP3304Session1
     /// </summary>
     public partial class FishyNotes : Form
     {
-        private IList<Form> _notesList;
+        private IList<Form> _noteForms;
+
+        // DECLARE a IDictionary to store new note Forms in, call it _noteForms:
+       // private IDictionary<int, Form> _noteForms;
+
+        // Declare an int to store the value for the next noteKey, call it _nextNoteKey, set it to 0:
+        int _nextNoteKey = 0;
+
+
 
         /// <summary>
         /// CONSTRUCTOR - FishyNotes Object Constructor
@@ -27,14 +37,15 @@ namespace COMP3304Session1
         public FishyNotes(IList<Form> noteList)
         {
             //Stores the notelist in a local variable.
-            _notesList = noteList;
+            _noteForms = noteList;
             InitializeComponent();
         }
-
-        private void FishyNotes_Load(object sender, EventArgs e)
+        /*
+        public void RemoveNote(int noteKey) 
         {
-
+            _noteForms.Remove(noteKey);
         }
+        */
         /// <summary>
         /// METHOD - Instantiating a new FishyNote Form Object
         /// </summary>
@@ -42,8 +53,8 @@ namespace COMP3304Session1
         /// <param name="e"></param>
         private void MoreFishButton_Click(object sender, EventArgs e)
         {
-            Form newNote = new FishyNote();
-            _notesList.Add(newNote);
+            Form newNote = new FishyNote(_nextNoteKey);
+            _noteForms.Add(newNote);
             newNote.Show();
 
         }

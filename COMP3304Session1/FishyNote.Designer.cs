@@ -78,6 +78,7 @@ namespace COMP3304Session1
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FishyNote";
             this.Text = "FishyNote";
+            this.Load += new System.EventHandler(this.FishyNote_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FishyNote_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FishyNote_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FishyNote_MouseUp);

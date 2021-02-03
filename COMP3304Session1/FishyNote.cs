@@ -18,12 +18,19 @@ namespace COMP3304Session1
     /// </summary>
     public partial class FishyNote : Form
     {
+        // Declare an int _id, it stores the ID given to the fishynote
+        private int _id = 0;
+
+
         /// <summary>
         /// CONSTRUCTOR - Initialise FishyNote
         /// </summary>
-        public FishyNote()
+        public FishyNote(int id)
         {
             InitializeComponent();
+
+            //SET _id; remember to put it in the parameter
+            _id = id;
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -107,6 +114,11 @@ namespace COMP3304Session1
         {
             // RESET _mouseDown to false:
             _mouseDown = false;
+        }
+
+        private void FishyNote_Load(object sender, EventArgs e)
+        {
+
         }
         #endregion
         // end of sourced code.
