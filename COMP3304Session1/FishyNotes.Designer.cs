@@ -41,7 +41,7 @@ namespace COMP3304Session1
             this.MoreFishButton.TabIndex = 0;
             this.MoreFishButton.Text = "More Fish!";
             this.MoreFishButton.UseVisualStyleBackColor = true;
-            this.MoreFishButton.Click += new System.EventHandler(this.MoreFishButton_Click);
+            this.MoreFishButton.Click += new System.EventHandler(this.AddNote_Click);
             // 
             // FishyNotes
             // 

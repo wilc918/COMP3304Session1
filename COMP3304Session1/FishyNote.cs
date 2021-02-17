@@ -18,19 +18,53 @@ namespace COMP3304Session1
     /// </summary>
     public partial class FishyNote : Form
     {
+
+        // DECLARE a Size for the size of the sticky note when 'open', call it _openSize:
+        private Size _openSize = new System.Drawing.Size(560, 530);
+
+        // DECLARE a Size for the size of the sticky note when 'closed', call it _closedSize:
+        private Size _closedSize = new System.Drawing.Size(152,107);
+
+        //DECLARE a boolean to flag whether the note is 'open' or 'closed', make it true when 'open' and call it _openFlag:
+        private bool _openFlag = true;
+
+        //DECLARE a String to give persistence to the text in the text box, call it _text:
+        private String _text;
+
         // Declare an int _id, it stores the ID given to the fishynote
         private int _id = 0;
+
+        // DECLARE a ReplaceTextDelegate for all delegates to be called when note text has changed, call it _changeTextCallback:
+        private ReplaceTextDelegate _changeTextCallback;
+
+        // DECLARE a RetrieveTextDelegate for the delegate to be called to retrieve note text, call it _getTextCallback:
+        private RetrieveTextDelegate _getTextCallback;
+
+        // DECLARE a SelectItemDelegate for the delegate to be called when the note is to be deleted, call it _deleteThis:
+        private SelectItemDelegate _deleteThis;
 
 
         /// <summary>
         /// CONSTRUCTOR - Initialise FishyNote
         /// </summary>
-        public FishyNote(int id)
+        public FishyNote(int id, Image image, ReplaceTextDelegate replaceText, RetrieveTextDelegate retrieveText, SelectItemDelegate deleteMe)
         {
             InitializeComponent();
 
             //SET _id; remember to put it in the parameter
             _id = id;
+
+            // SET image
+            this.CollapseButton.Image = image;
+ 
+            // SET _changeTextCallback to replaceText:
+            _changeTextCallback += replaceText;
+
+            // SET _getTextCallback to retrieveText:
+            _getTextCallback += retrieveText;
+
+            // SET _deleteThis to deleteMe:
+            _deleteThis += deleteMe;
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -46,6 +80,7 @@ namespace COMP3304Session1
             {
                 // Disposes of this particular FishyNote Instance.
                 this.Dispose();
+                this._deleteThis(_id);
             }
         /// <summary>
         /// METHOD - On click, Shrinks/Expands the window.
@@ -54,9 +89,29 @@ namespace COMP3304Session1
         /// <param name="e"></param>
             private void CollapseButton_Click(object sender, EventArgs e)
             {
-            //Attempt at ternary operator. Checks if height is greater than 70, sets height to 69(yes) or 372(no).
-            Height = Height > 70 ? Height = 62 : Height = 372;
-        }
+            // If window is open, close it:
+            if (_openFlag)
+            {
+                //Set its size to _closedSize:
+                this.ClientSize = _closedSize;
+
+                // Reset the _openFlag:
+                this._openFlag = false;
+            }
+
+            // If the window is closed open it:
+            else
+            {
+
+                //Set it s size to _openSize:
+                this.ClientSize = _openSize;
+
+                //Reset the _openFlag:
+                this._openFlag = true;
+            }
+
+
+            }
         /// <summary>
         /// METHOD - On click, if the text is unmodified from default then the text is cleared.
         /// </summary>
@@ -65,10 +120,19 @@ namespace COMP3304Session1
         private void FishyTextBox_Click(object sender, EventArgs e)
         {
             // If FishyTextBox is unmodified then clear the text.
-            if (FishyTextBox.Modified == false) {
+           /* if (FishyTextBox.Modified == false) {
                 FishyTextBox.Text = "";
-            }
-            
+            }*/
+            this.FishyTextBox.Text = _getTextCallback(_id);
+        }
+
+        private void NoteTextBox_Changed(object sender, EventArgs e)
+        {
+            // STORE text in box into _text:
+            _text = this.FishyTextBox.Text;
+
+            // Call _changeTextCallback:
+            _changeTextCallback(_id, this.FishyTextBox.Text);
         }
 
         /// <summary>

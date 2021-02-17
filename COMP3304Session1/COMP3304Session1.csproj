@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataElement.cs" />
+    <Compile Include="IDataElement.cs" />
+    <Compile Include="IImageData.cs" />
+    <Compile Include="ITextData.cs" />
+    <Compile Include="NoteData.cs" />
+    <Compile Include="INoteData.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="FishyNote.cs">
