@@ -55,7 +55,8 @@ namespace COMP3304Session1
             // Instantiate _noteData:
             _noteData = noteData;
 
-            // Initialise _noteText:
+            // Initialise _noteText: 
+            // This gives access to the methods as defined by the ITextData interface as that is what the _noteData is being cast as in this case.
             _noteText = _noteData as ITextData;
 
             // Initialise _noteImages

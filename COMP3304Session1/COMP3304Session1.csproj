@@ -46,9 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FactoryLocator.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="DataElement.cs" />
     <Compile Include="IDataElement.cs" />
     <Compile Include="IImageData.cs" />
+    <Compile Include="IFactory.cs" />
+    <Compile Include="IService.cs" />
+    <Compile Include="IServiceLocator.cs" />
     <Compile Include="ITextData.cs" />
     <Compile Include="NoteData.cs" />
     <Compile Include="INoteData.cs" />
