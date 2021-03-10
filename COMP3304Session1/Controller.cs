@@ -38,10 +38,13 @@ namespace COMP3304Session1
             // Get a reference to a Form factory, call it formFactory:
             IFactory<Form> formFactory = factoryLocator.Get<Form>() as IFactory<Form>;
 
+            // Get a reference to a FishyNotefactory, call it formFactory:
+            IFactory<FishyNote> fishyNoteFactory = factoryLocator.Get<FishyNote>() as IFactory<FishyNote>;
+
             //Create List of type Form according to interface IList<> and stored within noteList local variable.
             //IList<Form> noteList = new List<Form>();
             //Runs a new FishyNotes Form that takes noteList as a parameter
-            Application.Run(new FishyNotes(formFactory, noteForms, noteData));
+            Application.Run(new FishyNotes(fishyNoteFactory, formFactory, noteForms, noteData));
         }
         
 

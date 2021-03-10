@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace COMP3304Session1
 {
-    interface IFactory<E>
+    public interface IFactory<E>
     {
         /// <summary>
         /// Instantiate the class of T where interface E applies. E is described when the factory is called.
