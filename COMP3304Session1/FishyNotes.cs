@@ -41,7 +41,7 @@ namespace COMP3304Session1
         private IFactory<FishyNote> _fishyNoteFactory;
 
         // Declare an int to store the value for the next noteKey, call it _nextNoteKey, set it to 0:
-        int _nextNoteKey = 0;
+        private int _nextNoteKey = 0;
 
 
 
@@ -98,29 +98,38 @@ namespace COMP3304Session1
             // Add new FishyNote and assign its noteKey:
             FishyNote note = new FishyNote(_nextNoteKey, _noteImages.RetrieveImage(_nextNoteKey), _noteText.ChangeText, _noteText.RetrieveText, this.RemoveNote);
 
+
+
             //Not sure where to use this but this is how I would make new forms.
             //_fishyNoteFactory.Create<FishyNote>();
             //I'm guessing I'd use it to make a fishyNote?
             //FishyNote is not parameterless so its not compatible with factory, consider builder pattern?
             _noteForms.Add(_nextNoteKey, note);
 
+            //SUBSCRIBE new FishyNote to 'data-changed' events:
+            (_noteData as IEventPublisher).Subscribe(_nextNoteKey, note.OnNewData);
+
             //Show the new note (also increment _nextNoteKey afterwards):
             _noteForms[_nextNoteKey].Show();
             _nextNoteKey++;
         }
 
-       
+        private void FishyNotes_Load(object sender, EventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// METHOD - Instantiating a new FishyNote Form Object
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-       /* private void MoreFishButton_Click(object sender, EventArgs e)
-        {
-            Form newNote = new FishyNote(_nextNoteKey);
-            _noteForms.Add(newNote);
-            newNote.Show();
+        /* private void MoreFishButton_Click(object sender, EventArgs e)
+         {
+             Form newNote = new FishyNote(_nextNoteKey);
+             _noteForms.Add(newNote);
+             newNote.Show();
 
-        }*/
+         }*/
     }
 }

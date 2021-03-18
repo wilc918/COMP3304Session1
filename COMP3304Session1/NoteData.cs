@@ -19,8 +19,10 @@ namespace COMP3304Session1
         // DECLARE an int to act as a circular counter index into _imageNames:
         private int _cCounter = 0;
 
-        // DECLARE a Disctionary<int,DataElement> to store all data in, call it _data:
+        // DECLARE a Dictionary<int,DataElement> to store all data in, call it _data:
         private IDictionary<int, DataElement> _data;
+
+
 
         /// <summary>
         /// Constructor for objects of type NoteData.
@@ -33,6 +35,7 @@ namespace COMP3304Session1
             //Instantiate and populate _imageNames:
             _imageNames = new List<String>(Directory.GetFiles(_imagePath));
         }
+
 
         #region IMLPEMENTATION of INoteData
         /// <summary>
@@ -91,31 +94,48 @@ namespace COMP3304Session1
         }
         #endregion
 
+        #region IMPLEMENTATION of IEventPublisher
+
+        /// <summary>
+        /// Subscribe a listener to note events
+        /// </summary>
+        /// <param name="key">Key to the note</param>
+        /// <param name="listener">Reference to the changes given</param>
+        public void Subscribe(int key, EventHandler<NoteEventArgs> listener)
+        {
+            //Cast the dataElement as IInternalPublisher so the Subscribe method can be called
+            //the goal is to keep the actual operations private via encapsulation
+           (_data[key] as IInternalPublisher).Subscribe(listener);
+        }
+
+        public void Unsubscribe(int key, EventHandler<NoteEventArgs> listener)
+        {
+            //Cast the dataElement as IInternalPublisher so the Unsubscribe method can be called
+            (_data[key] as IInternalPublisher).Unsubscribe(listener);
+        }
+
+        #endregion
+
+
         #region Private Methods
 
         /// <summary>
-
         /// Method to control image file (as a Blob) that is instantiated as part of a note.
-
         /// </summary>
-
         /// <param name="maxValue">The total number of image files in use</param>
-
         /// <returns></returns>
-
         private int CircularCounter(int maxValue)
-
         {
             _cCounter++;
-
             if (_cCounter == maxValue)
-
             {
                 _cCounter = 0;
             }
-
             return _cCounter;
         }
+
+
         #endregion
+
     }
 }

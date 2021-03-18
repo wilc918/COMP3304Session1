@@ -52,6 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IEventPublisher.cs" />
+    <Compile Include="IEventListener.cs" />
+    <Compile Include="IInternalPublisher.cs" />
+    <Compile Include="NoteEventArgs.cs" />
     <Compile Include="FactoryLocator.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="DataElement.cs" />
