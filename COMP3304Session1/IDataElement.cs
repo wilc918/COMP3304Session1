@@ -14,13 +14,12 @@ namespace COMP3304Session1
         /// </summary>
         /// <param name="text">Initial text</param>
         /// <param name="image">The image</param>
-        void Initialise(String text, Image image);
+        void Initialise(String text, Image image, ImageManipulator imageMan);
 
         /// <summary>
         /// Retrieve the image.
         /// </summary>
-        /// <returns>The image</returns>
-        Image RetrieveImage();
+        void RetrieveImage(Size rqdImageSize);
 
         /// <summary>
         /// Change text in the specified note.
@@ -31,7 +30,6 @@ namespace COMP3304Session1
         /// <summary>
         /// Retrieve Text.
         /// </summary>
-        /// <returns>The note text</returns>
-        String RetrieveText();
+        void RetrieveText();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,14 @@ namespace COMP3304Session1
     /// </summary>
     /// <param name="noteKey">Note Identifier</param>
     /// <returns>Associated note text</returns>
-    public delegate String RetrieveTextDelegate(int noteKey);
+    public delegate void RetrieveTextDelegate(int noteKey);
+
+    /// <summary>
+    /// Declare a delegate for requesting a stored image, call it RequestImageDelegate
+    /// </summary>
+    /// <param name="noteKey"Note Identifier></param>
+    /// <param name="size">Associate note text</param>
+    public delegate void RequestImageDelegate(int noteKey, Size size);
 
     /// <summary>
     /// Declare a delegate for selecting an item, call it SelectItem

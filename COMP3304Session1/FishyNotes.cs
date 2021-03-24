@@ -49,7 +49,7 @@ namespace COMP3304Session1
         /// CONSTRUCTOR - FishyNotes Object Constructor
         /// </summary>
         /// <param name="noteList"></param>
-        public FishyNotes(IFactory<FishyNote> fishyNoteFactory, IFactory<Form> formFactory, IDictionary<int, Form> noteContainer, INoteData noteData)
+        public FishyNotes(IFactory<Form> formFactory, IDictionary<int, Form> noteContainer, INoteData noteData)
         {
             //Stores the notelist in a local variable.
             //_noteForms = noteList;
@@ -57,9 +57,6 @@ namespace COMP3304Session1
 
             //Instantiate _formFactory:
             _formFactory = formFactory;
-
-            //Instantiate _fishyNoteFactory:
-            _fishyNoteFactory = fishyNoteFactory;
 
             //Instantiate _noteForms:
             _noteForms = noteContainer;
@@ -96,9 +93,11 @@ namespace COMP3304Session1
             _noteData.AddItem(_nextNoteKey);
 
             // Add new FishyNote and assign its noteKey:
-            FishyNote note = new FishyNote(_nextNoteKey, _noteImages.RetrieveImage(_nextNoteKey), _noteText.ChangeText, _noteText.RetrieveText, this.RemoveNote);
+            FishyNote note = new FishyNote(_nextNoteKey, _noteImages.RetrieveImage, _noteText.ChangeText, _noteText.RetrieveText, this.RemoveNote);
 
-
+            //I fixed _noteimages by changing FishyTextBox_Click FishyTextBox.Text = _getTextCallback(_id);
+            //as you cannot store void which is returned by _getTextCallback
+            //_getTextCallBack actually calls a method inside dataelement which should retrieve the text for us.
 
             //Not sure where to use this but this is how I would make new forms.
             //_fishyNoteFactory.Create<FishyNote>();

@@ -34,6 +34,9 @@ namespace COMP3304Session1
         // Declare an int _id, it stores the ID given to the fishynote
         private int _id = 0;
 
+        // DECLARE a SelectItemDelegate for the delegate to be called to retrieve note image, call it _RetrieveImage
+        //private SelectItemDelegate _retrieveImage;
+
         // DECLARE a ReplaceTextDelegate for all delegates to be called when note text has changed, call it _changeTextCallback:
         private ReplaceTextDelegate _changeTextCallback;
 
@@ -47,15 +50,19 @@ namespace COMP3304Session1
         /// <summary>
         /// CONSTRUCTOR - Initialise FishyNote
         /// </summary>
-        public FishyNote(int id, Image image, ReplaceTextDelegate replaceText, RetrieveTextDelegate retrieveText, SelectItemDelegate deleteMe)
+        public FishyNote(int id, RequestImageDelegate retrieveImage, ReplaceTextDelegate replaceText, RetrieveTextDelegate retrieveText, SelectItemDelegate deleteMe)
         {
             InitializeComponent();
 
             //SET _id; remember to put it in the parameter
             _id = id;
 
+            //SET _retrieveImage to RetrieveImage
+            //_retrieveImage = retrieveImage;
+
             // SET image
-            this.CollapseButton.Image = image;
+            //this.CollapseButton.Image = image;
+            retrieveImage(_id, this.CollapseButton.Size);
  
             // SET _changeTextCallback to replaceText:
             _changeTextCallback += replaceText;
@@ -123,7 +130,7 @@ namespace COMP3304Session1
            /* if (FishyTextBox.Modified == false) {
                 FishyTextBox.Text = "";
             }*/
-            this.FishyTextBox.Text = _getTextCallback(_id);
+            _getTextCallback(_id);
         }
 
         private void NoteTextBox_Changed(object sender, EventArgs e)

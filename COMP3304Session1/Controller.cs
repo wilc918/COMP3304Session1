@@ -44,7 +44,7 @@ namespace COMP3304Session1
             //Create List of type Form according to interface IList<> and stored within noteList local variable.
             //IList<Form> noteList = new List<Form>();
             //Runs a new FishyNotes Form that takes noteList as a parameter
-            Application.Run(new FishyNotes(fishyNoteFactory, formFactory, noteForms, noteData));
+            Application.Run(new FishyNotes(formFactory, noteForms, noteData));
         }
         
 

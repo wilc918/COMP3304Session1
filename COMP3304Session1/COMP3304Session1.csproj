@@ -52,9 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageManipulator.cs" />
     <Compile Include="IEventPublisher.cs" />
     <Compile Include="IEventListener.cs" />
     <Compile Include="IInternalPublisher.cs" />
+    <Compile Include="IImageManipulator.cs" />
     <Compile Include="NoteEventArgs.cs" />
     <Compile Include="FactoryLocator.cs" />
     <Compile Include="Factory.cs" />

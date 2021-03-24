@@ -15,26 +15,27 @@ namespace COMP3304Session1
         // DECLARE a Image to store an images in, call it _image:
         private Image _image;
 
-        private event EventHandler<NoteEventArgs> newData;
+        private ImageManipulator _imageMan;
+
+        private event EventHandler<NoteEventArgs> _newData;
 
         #region Implementation of IDataElement
-        public void Initialise(String text, Image image) 
+        public void Initialise(String text, Image image, ImageManipulator imageMan) 
         {
             // Assign parameters to data:
             _text = text;
             _image = image;
+            _imageMan = imageMan;
         }
 
         /// <summary>
         /// Retrieve the image, scaled to a specific size.
         /// </summary>
         /// <returns>The image</returns>
-        public Image RetrieveImage() 
+        public void RetrieveImage(Size rqdImageSize) 
         {
-            OnDataChanged(_image);
+            OnDataChanged(_imageMan.Scale(_image, rqdImageSize));
             // SCALE _image and fire event:
-            return _image;
-
             
         }
 
@@ -53,10 +54,10 @@ namespace COMP3304Session1
         /// Retrieve text.
         /// </summary>
         /// <returns>The note text</returns>
-        public String RetrieveText()
+        public void RetrieveText()
         {
-            // RETURN text event:
-            return _text;
+            // Fire text event:
+            OnDataChanged(_text);
 
 
         }
@@ -71,13 +72,13 @@ namespace COMP3304Session1
         public void Subscribe(EventHandler<NoteEventArgs> listener)
         {
             //Add data listener to our eventHandler
-            newData += listener;
+            _newData += listener;
         }
 
         public void Unsubscribe(EventHandler<NoteEventArgs> listener)
         {
             //Remove data listener from our eventHandler
-            newData -= listener;
+            _newData -= listener;
         }
 
         #endregion
@@ -99,7 +100,7 @@ namespace COMP3304Session1
             //Instantiate new noteEventArgs
             NoteEventArgs args = new NoteEventArgs(data);
             //Store the events inside the eventHandler according to key
-            newData(this, args);
+            _newData(this, args);
         }
 
         /// <summary>
@@ -111,7 +112,7 @@ namespace COMP3304Session1
             //Instantiate new noteEventArgs
             NoteEventArgs args = new NoteEventArgs(data);
             //Store the events inside the eventHandler according to key
-            newData(this, args);
+            _newData(this, args);
         }
 
 

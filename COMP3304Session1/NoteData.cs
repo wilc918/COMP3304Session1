@@ -13,6 +13,9 @@ namespace COMP3304Session1
         // DECLARE a string to store path for images on close button, call it _imagePath:
         private const string _imagePath = "..\\..\\FishAssets\\";
 
+        // DECLARE a IServiceLocator to store a referemce to the FactoryLocator, call it _factories:
+        private IServiceLocator _factories;
+
         // DECLARE a List<String> to store a list of path+filename for all available image assets, call it _imageName:
         private IList<String> _imageNames;
 
@@ -21,6 +24,8 @@ namespace COMP3304Session1
 
         // DECLARE a Dictionary<int,DataElement> to store all data in, call it _data:
         private IDictionary<int, DataElement> _data;
+
+        //Declare a imageManipulator to store a reference to ImageManipulator, call it _imageMan
 
 
 
@@ -34,6 +39,8 @@ namespace COMP3304Session1
 
             //Instantiate and populate _imageNames:
             _imageNames = new List<String>(Directory.GetFiles(_imagePath));
+
+            
         }
 
 
@@ -49,7 +56,7 @@ namespace COMP3304Session1
 
             // Store empty text and next note image into element:
             //element.Initialise("", Bitmap.FromFile(Path.GetFullPath(_imageNames[CircularCounter(_imageNames.Count)])));
-            element.Initialise("",Bitmap.FromFile(Path.GetFullPath(_imageNames[CircularCounter(_imageNames.Count)])));
+            element.Initialise("",Bitmap.FromFile(Path.GetFullPath(_imageNames[CircularCounter(_imageNames.Count)])), );
 
             // Add element to _data with given key:
             _data.Add(key, element);
@@ -79,19 +86,19 @@ namespace COMP3304Session1
             _data[noteKey].ChangeText(newText);
         }
 
-        public String RetrieveText(int noteKey)
+        public void RetrieveText(int noteKey)
         {
             // RETURN text for the note with id notekey:
-            return _data[noteKey].RetrieveText();
+             _data[noteKey].RetrieveText();
         }
 
         #endregion
 
         #region IMPLEMENTATION OF IImageData
-        public Image RetrieveImage(int noteKey)
+        public void RetrieveImage(int noteKey, Size rqdImageSize)
         {
-            return _data[noteKey].RetrieveImage();
-        }
+           _data[noteKey].RetrieveImage(rqdImageSize);
+        } 
         #endregion
 
         #region IMPLEMENTATION of IEventPublisher

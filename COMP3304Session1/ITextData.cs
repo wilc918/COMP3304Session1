@@ -20,7 +20,7 @@ namespace COMP3304Session1
         /// </summary>
         /// <param name="noteKey">Identify the text to be retrieved</param>
         /// <returns>The text associated with the key from the dictionary</returns>
-        String RetrieveText(int noteKey);
+        void RetrieveText(int noteKey);
 
     }
 }

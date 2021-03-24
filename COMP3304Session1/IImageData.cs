@@ -14,6 +14,6 @@ namespace COMP3304Session1
         /// </summary>
         /// <param name="noteKey">Key for the dictionary to identify which note to choose the image for</param>
         /// <returns>The image that is paired with that key</returns>
-        Image RetrieveImage(int noteKey);
+        void RetrieveImage(int noteKey, Size rqdImageSize);
     }
 }
