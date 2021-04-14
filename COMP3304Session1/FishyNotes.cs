@@ -93,7 +93,8 @@ namespace COMP3304Session1
             _noteData.AddItem(_nextNoteKey);
 
             // Add new FishyNote and assign its noteKey:
-            FishyNote note = new FishyNote(_nextNoteKey, _noteImages.RetrieveImage, _noteText.ChangeText, _noteText.RetrieveText, this.RemoveNote);
+            //FishyNote note = _formFactory.Create<FishyNote>() as FishyNote;
+            //FishyNote note = new FishyNote(_nextNoteKey, _noteImages.RetrieveImage, _noteText.ChangeText, _noteText.RetrieveText, this.RemoveNote);
 
             //I fixed _noteimages by changing FishyTextBox_Click FishyTextBox.Text = _getTextCallback(_id);
             //as you cannot store void which is returned by _getTextCallback
@@ -103,10 +104,19 @@ namespace COMP3304Session1
             //_fishyNoteFactory.Create<FishyNote>();
             //I'm guessing I'd use it to make a fishyNote?
             //FishyNote is not parameterless so its not compatible with factory, consider builder pattern?
+            FishyNote note = _formFactory.Create<FishyNote>() as FishyNote;
             _noteForms.Add(_nextNoteKey, note);
 
+           
+
+            //Subscribe new FishyNote to 'data-changed' events:
+            (_noteData as IEventPublisher).Subscribe(_nextNoteKey, (_noteForms[_nextNoteKey] as IEventListener).OnNewData);
+
+            // Initialise new FishyNote:
+            note.Initialise(_nextNoteKey, _noteImages.RetrieveImage, _noteText.ChangeText, _noteText.RetrieveText, this.RemoveNote);
+
             //SUBSCRIBE new FishyNote to 'data-changed' events:
-            (_noteData as IEventPublisher).Subscribe(_nextNoteKey, note.OnNewData);
+            //(_noteData as IEventPublisher).Subscribe(_nextNoteKey, note.OnNewData);
 
             //Show the new note (also increment _nextNoteKey afterwards):
             _noteForms[_nextNoteKey].Show();

@@ -26,7 +26,7 @@ namespace COMP3304Session1
         private IDictionary<int, DataElement> _data;
 
         //Declare a imageManipulator to store a reference to ImageManipulator, call it _imageMan
-
+        private ImageManipulator _imageMan;
 
 
         /// <summary>
@@ -34,17 +34,37 @@ namespace COMP3304Session1
         /// </summary>
         public NoteData()
         {
+            // Initialise _factories:
+            //_factories = locator;
+
             // Instantiate _data:
-            _data = new Dictionary<int, DataElement>();
+            //_data = new Dictionary<int, DataElement>();
 
             //Instantiate and populate _imageNames:
-            _imageNames = new List<String>(Directory.GetFiles(_imagePath));
+            //_imageNames = new List<String>(Directory.GetFiles(_imagePath));
 
             
         }
 
 
         #region IMLPEMENTATION of INoteData
+        /// <summary>
+        /// Inject a reference to the factory locator service
+        /// </summary>
+        /// <param name="locator">The factory locator service</param>
+        public void InjectFactory(IServiceLocator locator)
+        {
+            // Initialise _factories:
+            _factories = locator;
+
+            // Instantiate _data:
+            _data = (_factories.Get<IDictionary<int, DataElement>>() as IFactory<IDictionary<int, DataElement>>).Create<Dictionary<int, DataElement>>();
+            //_data = new Dictionary<int, DataElement>();
+
+            //Instantiate and populate _imageNames:
+            _imageNames = new List<String>(Directory.GetFiles(_imagePath));
+        }
+
         /// <summary>
         /// Add a new note
         /// </summary>
@@ -55,8 +75,7 @@ namespace COMP3304Session1
             DataElement element = new DataElement();
 
             // Store empty text and next note image into element:
-            //element.Initialise("", Bitmap.FromFile(Path.GetFullPath(_imageNames[CircularCounter(_imageNames.Count)])));
-            element.Initialise("",Bitmap.FromFile(Path.GetFullPath(_imageNames[CircularCounter(_imageNames.Count)])), );
+            element.Initialise("", Bitmap.FromFile(Path.GetFullPath(_imageNames[CircularCounter(_imageNames.Count)])), (_factories.Get<ImageManipulator>() as IFactory<ImageManipulator>).Create<ImageManipulator>());
 
             // Add element to _data with given key:
             _data.Add(key, element);

@@ -46,6 +46,10 @@ namespace COMP3304Session1
         // DECLARE a SelectItemDelegate for the delegate to be called when the note is to be deleted, call it _deleteThis:
         private SelectItemDelegate _deleteThis;
 
+        public FishyNote() 
+        {
+         // Does nothing
+        }
 
         /// <summary>
         /// CONSTRUCTOR - Initialise FishyNote
@@ -64,6 +68,30 @@ namespace COMP3304Session1
             //this.CollapseButton.Image = image;
             retrieveImage(_id, this.CollapseButton.Size);
  
+            // SET _changeTextCallback to replaceText:
+            _changeTextCallback += replaceText;
+
+            // SET _getTextCallback to retrieveText:
+            _getTextCallback += retrieveText;
+
+            // SET _deleteThis to deleteMe:
+            _deleteThis += deleteMe;
+        }
+
+        public void Initialise(int id, RequestImageDelegate retrieveImage, ReplaceTextDelegate replaceText, RetrieveTextDelegate retrieveText, SelectItemDelegate deleteMe)
+        {
+            InitializeComponent();
+
+            //SET _id; remember to put it in the parameter
+            _id = id;
+
+            //SET _retrieveImage to RetrieveImage
+            //_retrieveImage = retrieveImage;
+
+            // SET image
+            //this.CollapseButton.Image = image;
+            retrieveImage(_id, this.CollapseButton.Size);
+
             // SET _changeTextCallback to replaceText:
             _changeTextCallback += replaceText;
 
@@ -130,7 +158,7 @@ namespace COMP3304Session1
            /* if (FishyTextBox.Modified == false) {
                 FishyTextBox.Text = "";
             }*/
-            _getTextCallback(_id);
+           _getTextCallback(_id);
         }
 
         private void NoteTextBox_Changed(object sender, EventArgs e)
@@ -146,14 +174,14 @@ namespace COMP3304Session1
         #region Implementation of IEventListener
         public void OnNewData(object source, NoteEventArgs args)
         {
-            if (args.Image != null) 
+            if (args.image != null) 
             {
-                this.CollapseButton.Image = args.Image;
+                this.CollapseButton.Image = args.image;
             }
 
-            if (args.Text != null) 
+            if (args.text != null) 
             {
-                this.FishyTextBox.Text = args.Text;
+                this.FishyTextBox.Text = args.text;
             }
         }
         #endregion

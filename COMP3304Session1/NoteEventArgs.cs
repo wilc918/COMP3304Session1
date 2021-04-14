@@ -14,16 +14,18 @@ namespace COMP3304Session1
     {
   
         // Stores a string of text.
-        private String _text;
+        //private String _text;
 
         // Returns the string inside _text.
-        public String Text => _text;
+        //public String Text => _text;
+        public String text { get; }
 
         // Stores an Image.
-        private Image _image;
+        //private Image _image;
 
         // Returns the Image inside _image.
-        public Image Image => _image;
+        //public Image Image => _image; //=> creates new reference
+        public Image image { get; }
 
 
         //Below are two constructor methods that are an example of Constructor Overloading
@@ -34,7 +36,7 @@ namespace COMP3304Session1
         /// <param name="data">Text data in the form of String</param>
         public NoteEventArgs(String data) 
         {
-            this._text = data;
+            this.text = data;
         }
 
         /// <summary>
@@ -43,7 +45,7 @@ namespace COMP3304Session1
         /// <param name="data">Image data in the form of Image</param>
         public NoteEventArgs(Image data)
         {
-            this._image = data;
+            this.image = data;
         }
 
     }

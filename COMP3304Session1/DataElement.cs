@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace COMP3304Session1
 {
-    class DataElement : IDataElement, IInternalPublisher
+    class DataElement : IDataElement, IInternalPublisher, IDisposable
     {
         // DECLARE a String to store text in, call it _text:
         private String _text;
@@ -15,12 +15,14 @@ namespace COMP3304Session1
         // DECLARE a Image to store an images in, call it _image:
         private Image _image;
 
-        private ImageManipulator _imageMan;
+        // DECLARE an ImageManipulator to store our ImageManipulator in, call it _imageMan:
+        private IImageManipulator _imageMan;
 
+        // DECLARE an EventHandler to store NoteEventArgs in, call it _newData:
         private event EventHandler<NoteEventArgs> _newData;
 
         #region Implementation of IDataElement
-        public void Initialise(String text, Image image, ImageManipulator imageMan) 
+        public void Initialise(String text, Image image, IImageManipulator imageMan) 
         {
             // Assign parameters to data:
             _text = text;

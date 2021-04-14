@@ -9,6 +9,12 @@ namespace COMP3304Session1
     public interface INoteData
     {
         /// <summary>
+        /// Injects the factoryLocator into noteData that allows noteData to create what it needs
+        /// </summary>
+        /// <param name="locator">The factoryLocator</param>
+        void InjectFactory(IServiceLocator locator);
+
+        /// <summary>
         /// Add a new note
         /// </summary>
         /// <param name="key">Unique key of new note</param>

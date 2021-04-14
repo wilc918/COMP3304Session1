@@ -14,7 +14,7 @@ namespace COMP3304Session1
         /// </summary>
         /// <param name="text">Initial text</param>
         /// <param name="image">The image</param>
-        void Initialise(String text, Image image, ImageManipulator imageMan);
+        void Initialise(String text, Image image, IImageManipulator imageMan);
 
         /// <summary>
         /// Retrieve the image.

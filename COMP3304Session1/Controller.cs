@@ -35,6 +35,9 @@ namespace COMP3304Session1
             //Do it together in one line.
             INoteData noteData = (factoryLocator.Get<INoteData>() as IFactory<INoteData>).Create<NoteData>();
 
+            // Inject _factoryLocator through to noteData
+            noteData.InjectFactory(factoryLocator);
+
             // Get a reference to a Form factory, call it formFactory:
             IFactory<Form> formFactory = factoryLocator.Get<Form>() as IFactory<Form>;
 
