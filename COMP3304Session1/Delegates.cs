@@ -26,7 +26,7 @@ namespace COMP3304Session1
     /// </summary>
     /// <param name="noteKey">Note Identifier</param>
     /// <returns>Associated note image</returns>
-    public delegate Image RetrieveImageDelegate(int noteKey);
+    public delegate void RetrieveImageDelegate(int noteKey);
 
     /// <summary>
     /// Declare a delegate for selecting an item, call it SelectItem

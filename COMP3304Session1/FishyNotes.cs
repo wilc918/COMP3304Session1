@@ -96,7 +96,7 @@ namespace COMP3304Session1
             _noteData.AddItem(_nextNoteKey);
 
             // Add new FishyNote and assign its noteKey:
-            FishyNote note = new FishyNote(_nextNoteKey, _noteImages.RetrieveImage(_nextNoteKey), _noteText.ChangeText, _noteText.RetrieveText, this.RemoveNote);
+            FishyNote note = new FishyNote(_nextNoteKey, _noteImages.RetrieveImage, _noteText.ChangeText, _noteText.RetrieveText, this.RemoveNote);
 
 
             //Not sure where to use this but this is how I would make new forms.
