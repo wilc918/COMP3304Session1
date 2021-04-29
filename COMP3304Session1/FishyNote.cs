@@ -124,7 +124,7 @@ namespace COMP3304Session1
            /* if (FishyTextBox.Modified == false) {
                 FishyTextBox.Text = "";
             }*/
-            this.FishyTextBox.Text = _getTextCallback(_id);
+           _getTextCallback(_id);
         }
 
         private void NoteTextBox_Changed(object sender, EventArgs e)

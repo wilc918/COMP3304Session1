@@ -19,7 +19,7 @@ namespace COMP3304Session1
     /// </summary>
     /// <param name="noteKey">Note Identifier</param>
     /// <returns>Associated note text</returns>
-    public delegate String RetrieveTextDelegate(int noteKey);
+    public delegate void RetrieveTextDelegate(int noteKey);
 
     /// <summary>
     /// Declare a delegate for retrieving stored image, call it RetrieveImage
