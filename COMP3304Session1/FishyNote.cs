@@ -56,7 +56,7 @@ namespace COMP3304Session1
 
             // SET image
             //this.CollapseButton.Image = image;
-            retrieveImage(_id);
+            //retrieveImage(_id);
  
             // SET _changeTextCallback to replaceText:
             _changeTextCallback += replaceText;
@@ -66,6 +66,17 @@ namespace COMP3304Session1
 
             // SET _deleteThis to deleteMe:
             _deleteThis += deleteMe;
+        }
+
+        public void Initialise(int id, RetrieveImageDelegate retrieveImage)
+        {
+
+            //SET _id; remember to put it in the parameter
+            _id = id;
+
+            // SET image
+            //this.CollapseButton.Image = image;
+            retrieveImage(_id);
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)

@@ -101,6 +101,8 @@ namespace COMP3304Session1
             //SUBSCRIBE new FishyNote to 'data-changed' events:
             (_noteData as IEventPublisher).Subscribe(_nextNoteKey, note.OnNewInput);
 
+            note.Initialise(_nextNoteKey, _noteImages.RetrieveImage);
+
             //Not sure where to use this but this is how I would make new forms.
             //_fishyNoteFactory.Create<FishyNote>();
             //I'm guessing I'd use it to make a fishyNote?
