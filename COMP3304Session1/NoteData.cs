@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 
 namespace COMP3304Session1
 {
-    public class NoteData : INoteData, ITextData, IImageData
+    public class NoteData : INoteData, ITextData, IImageData, IEventPublisher
     {
         // DECLARE a string to store path for images on close button, call it _imagePath:
         private const string _imagePath = "..\\..\\FishAssets\\";
+
+        //DECLARE a IServiceLocator to store a reference to the FactoryLocator, call it _factories
+        private IServiceLocator _factories;
 
         // DECLARE a List<String> to store a list of path+filename for all available image assets, call it _imageName:
         private IList<String> _imageNames;
@@ -19,7 +22,7 @@ namespace COMP3304Session1
         // DECLARE an int to act as a circular counter index into _imageNames:
         private int _cCounter = 0;
 
-        // DECLARE a Disctionary<int,DataElement> to store all data in, call it _data:
+        // DECLARE a Dictionary<int,DataElement> to store all dataelements (images/strings) in, call it _data:
         private IDictionary<int, DataElement> _data;
 
         /// <summary>
@@ -76,18 +79,36 @@ namespace COMP3304Session1
             _data[noteKey].ChangeText(newText);
         }
 
-        public String RetrieveText(int noteKey)
+        public void RetrieveText(int noteKey)
         {
-            // RETURN text for the note with id notekey:
-            return _data[noteKey].RetrieveText();
+            // Update text for the note with id notekey:
+            _data[noteKey].RetrieveText();
         }
 
         #endregion
 
         #region IMPLEMENTATION OF IImageData
-        public Image RetrieveImage(int noteKey)
+        public void RetrieveImage(int noteKey)
         {
-            return _data[noteKey].RetrieveImage();
+             _data[noteKey].RetrieveImage();
+        }
+        #endregion
+
+        #region IMPLEMENTAITON OF IEventPublisher
+        /// <summary>
+        /// Subscribe a listener to note events
+        /// </summary>
+        /// <param name="key">Key to the note</param>
+        /// <param name="listener">Reference to the listener method</param>
+        public void Subscribe(int key, EventHandler<NoteEventArgs> listener) 
+        {
+            //Call the Subscribe methods as listed inside the IInternalEventPublisher interface on the data objects using the data which we have passed to us (stored within NoteEventArgs)
+           (_data[key] as IInternalEventPublisher).Subscribe(listener);
+        }
+
+        public void Unsubscribe(int key, EventHandler<NoteEventArgs> listener) 
+        {
+            (_data[key] as IInternalEventPublisher).Unsubscribe(listener);
         }
         #endregion
 
