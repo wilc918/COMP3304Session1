@@ -98,11 +98,15 @@ namespace COMP3304Session1
             // Add new FishyNote and assign its noteKey:
             FishyNote note = new FishyNote(_nextNoteKey, _noteImages.RetrieveImage(_nextNoteKey), _noteText.ChangeText, _noteText.RetrieveText, this.RemoveNote);
 
+
             //Not sure where to use this but this is how I would make new forms.
             //_fishyNoteFactory.Create<FishyNote>();
             //I'm guessing I'd use it to make a fishyNote?
             //FishyNote is not parameterless so its not compatible with factory, consider builder pattern?
             _noteForms.Add(_nextNoteKey, note);
+
+            //SUBSCRIBE new FishyNote to 'data-changed' events:
+            (_noteData as IEventPublisher).Subscribe(_nextNoteKey, note.OnNewInput);
 
             //Show the new note (also increment _nextNoteKey afterwards):
             _noteForms[_nextNoteKey].Show();

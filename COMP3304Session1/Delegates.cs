@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,11 +15,18 @@ namespace COMP3304Session1
     public delegate void ReplaceTextDelegate(int noteKey, String newText);
 
     /// <summary>
-    /// Declare a delegate for retrieving stored text, call it RetrieveTest
+    /// Declare a delegate for retrieving stored text, call it RetrieveText
     /// </summary>
     /// <param name="noteKey">Note Identifier</param>
     /// <returns>Associated note text</returns>
     public delegate String RetrieveTextDelegate(int noteKey);
+
+    /// <summary>
+    /// Declare a delegate for retrieving stored image, call it RetrieveImage
+    /// </summary>
+    /// <param name="noteKey">Note Identifier</param>
+    /// <returns>Associated note image</returns>
+    public delegate Image RetrieveImageDelegate(int noteKey);
 
     /// <summary>
     /// Declare a delegate for selecting an item, call it SelectItem

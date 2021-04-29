@@ -16,7 +16,7 @@ namespace COMP3304Session1
     /// Author  (Calum Wilkinson)
     /// Version (27/01/2020)
     /// </summary>
-    public partial class FishyNote : Form
+    public partial class FishyNote : Form, IEventListener
     {
 
         // DECLARE a Size for the size of the sticky note when 'open', call it _openSize:
@@ -47,7 +47,7 @@ namespace COMP3304Session1
         /// <summary>
         /// CONSTRUCTOR - Initialise FishyNote
         /// </summary>
-        public FishyNote(int id, Image image, ReplaceTextDelegate replaceText, RetrieveTextDelegate retrieveText, SelectItemDelegate deleteMe)
+        public FishyNote(int id, RetrieveImageDelegate retrieveImage, ReplaceTextDelegate replaceText, RetrieveTextDelegate retrieveText, SelectItemDelegate deleteMe)
         {
             InitializeComponent();
 
@@ -55,7 +55,8 @@ namespace COMP3304Session1
             _id = id;
 
             // SET image
-            this.CollapseButton.Image = image;
+            //this.CollapseButton.Image = image;
+            retrieveImage(_id);
  
             // SET _changeTextCallback to replaceText:
             _changeTextCallback += replaceText;
@@ -134,6 +135,27 @@ namespace COMP3304Session1
             // Call _changeTextCallback:
             _changeTextCallback(_id, this.FishyTextBox.Text);
         }
+
+        #region Implementation of IEventListener
+        public void OnNewInput(object source, NoteEventArgs args) 
+        {
+            //Check for new image data:
+            if (args.image != null) 
+            {
+                // load it into CollapseButton.Image:
+                this.CollapseButton.Image = args.image;
+            }
+
+            //Check for new text data:
+            if (args.text != null) 
+            {
+                // load it into FishyTextBox.Text:
+                this.FishyTextBox.Text = args.text;
+            }
+
+
+        }
+        #endregion
 
         /// <summary>
         /// All code below was sourced from COMP3304 - Advanced Object Oriented Programming led by Dr Marc Price.

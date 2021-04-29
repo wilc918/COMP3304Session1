@@ -20,7 +20,7 @@ namespace COMP3304Session1
         /// Retrieve the image.
         /// </summary>
         /// <returns>The image</returns>
-        Image RetrieveImage();
+        void RetrieveImage();
 
         /// <summary>
         /// Change text in the specified note.
@@ -32,6 +32,6 @@ namespace COMP3304Session1
         /// Retrieve Text.
         /// </summary>
         /// <returns>The note text</returns>
-        String RetrieveText();
+        void RetrieveText();
     }
 }
