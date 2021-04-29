@@ -43,6 +43,18 @@ namespace COMP3304Session1
         // DECLARE a SelectItemDelegate for the delegate to be called when the note is to be deleted, call it _deleteThis:
         private SelectItemDelegate _deleteThis;
 
+        // DECLARE an ExecuteCommandDelegate to store the delegate to be called to issue a command:
+        private ExecuteCommandDelegate _execute;
+
+        //DECLARE an action for changing text.
+        private Action<String> _changeTextAction;
+
+        //DECLARE an action for retrieving text
+        private Action _getTextAction;
+
+        //DECLARE an ICommand for deleteThisCom
+        private ICommand _deleteThisCom;
+
 
         /// <summary>
         /// CONSTRUCTOR - Initialise FishyNote
@@ -77,6 +89,37 @@ namespace COMP3304Session1
             // SET image
             //this.CollapseButton.Image = image;
             retrieveImage(_id);
+        }
+
+        public void Initialise(ExecuteCommandDelegate execute, Action retrieveImage)
+        {
+
+            //SET execute;
+            _execute = execute;
+
+            // SET image
+            ICommand getImage = new Command(retrieveImage);
+            _execute(getImage);
+        }
+
+        public void Initialise(ExecuteCommandDelegate execute, Action retrieveImage, Action<String> replaceText, Action retrieveText, ICommand deleteMe)
+        {
+            _execute = execute;
+
+            // SET image
+            //this.CollapseButton.Image = image;
+            //retrieveImage(_id);
+            ICommand getImage = new Command(retrieveImage);
+            _execute(getImage);
+
+            // SET _changeTextAction to replaceText:
+            _changeTextAction += replaceText;
+
+            // SET _getTextAction to requestText:
+            _getTextAction += retrieveText;
+
+            // SET _deleteThisCom to deleteMe
+            _deleteThisCom = deleteMe;
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)

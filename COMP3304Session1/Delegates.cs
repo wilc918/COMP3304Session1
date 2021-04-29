@@ -38,6 +38,6 @@ namespace COMP3304Session1
     /// Declare a delegate for issuing commands, call it ExecuteCommand
     /// </summary>
     /// <param name="command"></param>
-    public delegate void ExecuteCommand(ICommand command);
+    public delegate void ExecuteCommandDelegate(ICommand command);
 
 }

@@ -102,6 +102,7 @@ namespace COMP3304Session1
             (_noteData as IEventPublisher).Subscribe(_nextNoteKey, note.OnNewInput);
 
             note.Initialise(_nextNoteKey, _noteImages.RetrieveImage);
+            //note.Initialise(ExecuteCommandDelegate, _noteData.RetrieveItem);
 
             //Not sure where to use this but this is how I would make new forms.
             //_fishyNoteFactory.Create<FishyNote>();
