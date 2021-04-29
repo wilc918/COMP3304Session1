@@ -34,4 +34,10 @@ namespace COMP3304Session1
     /// <param name="key">Identifier of item to be selected</param>
     public delegate void SelectItemDelegate(int key);
 
+    /// <summary>
+    /// Declare a delegate for issuing commands, call it ExecuteCommand
+    /// </summary>
+    /// <param name="command"></param>
+    public delegate void ExecuteCommand(ICommand command);
+
 }

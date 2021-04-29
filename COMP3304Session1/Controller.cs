@@ -46,7 +46,15 @@ namespace COMP3304Session1
             //Runs a new FishyNotes Form that takes noteList as a parameter
             Application.Run(new FishyNotes(fishyNoteFactory, formFactory, noteForms, noteData));
         }
-        
+
+        /// <summary>
+        /// Implementation of ExecuteCommand Delegate, for Command Pattern
+        /// </summary>
+        /// <param name="command"></param>
+        public void ExecuteCommand(ICommand command) 
+        {
+            command.Execute();
+        }
 
     }
 }
